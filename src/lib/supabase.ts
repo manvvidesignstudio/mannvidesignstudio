@@ -1,0 +1,26 @@
+import { createClient, SupabaseClient } from '@supabase/supabase-js';
+
+const supabaseUrl = import.meta.env.VITE_SUPABASE_URL || '';
+const supabaseAnonKey = import.meta.env.VITE_SUPABASE_ANON_KEY || '';
+
+export const isSupabaseConfigured = (): boolean => {
+  return (
+    typeof supabaseUrl === 'string' &&
+    supabaseUrl.trim() !== '' &&
+    !supabaseUrl.includes('your-project') &&
+    typeof supabaseAnonKey === 'string' &&
+    supabaseAnonKey.trim() !== '' &&
+    !supabaseAnonKey.includes('your-anon-key')
+  );
+};
+
+export const supabase: SupabaseClient = createClient(
+  isSupabaseConfigured() ? supabaseUrl : 'https://placeholder-domain.supabase.co',
+  isSupabaseConfigured() ? supabaseAnonKey : 'placeholder-anon-key',
+  {
+    auth: {
+      persistSession: true,
+      autoRefreshToken: true,
+    }
+  }
+);

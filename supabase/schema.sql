@@ -101,6 +101,10 @@ create table if not exists studio_content (
   founder_title text not null default 'Principal Architect & Design Director',
   founder_quote text not null default 'Great interior architecture does not seek to shout; it provides a serene, tactile sanctuary where life naturally unfolds.',
   founder_image_url text not null default 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?q=80&w=1200&auto=format&fit=crop',
+  second_founder_name text,
+  second_founder_title text,
+  second_founder_quote text,
+  second_founder_image_url text,
   stats jsonb not null default '[
     {"value": "15+", "label": "Selected Projects", "sub": "Completed across Western India"},
     {"value": "8+", "label": "Cities", "sub": "Pune, Mumbai, Goa, Bengaluru & beyond"},
@@ -109,6 +113,11 @@ create table if not exists studio_content (
   ]'::jsonb,
   updated_at timestamptz not null default now()
 );
+
+alter table studio_content add column if not exists second_founder_name text;
+alter table studio_content add column if not exists second_founder_title text;
+alter table studio_content add column if not exists second_founder_quote text;
+alter table studio_content add column if not exists second_founder_image_url text;
 
 alter table studio_content enable row level security;
 drop policy if exists "Public read studio_content" on studio_content;

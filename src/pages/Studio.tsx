@@ -102,6 +102,42 @@ export const Studio: React.FC = () => {
           </div>
         </div>
 
+        {content.second_founder_name && content.second_founder_image_url && (
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 items-center mb-32">
+            <div className="lg:col-span-5 lg:order-2 relative">
+              <div className="aspect-[4/5] overflow-hidden bg-[#181715]">
+                <ParallaxImage
+                  src={content.second_founder_image_url}
+                  alt={content.second_founder_name}
+                  className="w-full h-full object-contain filter brightness-95"
+                />
+              </div>
+              <div className="absolute -bottom-6 -left-6 p-6 bg-[#161513] border border-[#F5F2EC]/10 max-w-xs hidden sm:block">
+                <p className="text-xs uppercase tracking-widest text-[#C8A97E]">{content.second_founder_name}</p>
+                <p className="text-[11px] text-[#8E8A82]">{content.second_founder_title}</p>
+              </div>
+            </div>
+            <div className="lg:col-span-7 space-y-8 lg:pr-6 lg:order-1">
+              <div className="space-y-3">
+                <span className="text-[11px] font-sans uppercase tracking-[0.25em] text-[#C8A97E]">
+                  Leadership & Vision
+                </span>
+                <h2 className="font-serif text-3xl sm:text-5xl text-[#F5F2EC] font-normal leading-snug">
+                  Another perspective, one shared studio.
+                </h2>
+              </div>
+              {content.second_founder_quote && (
+                <blockquote className="p-6 border-l-2 border-[#C8A97E] bg-[#161513] font-serif text-xl sm:text-2xl italic text-[#F5F2EC]/90 font-light">
+                  "{content.second_founder_quote}"
+                </blockquote>
+              )}
+              <p className="text-xs font-sans text-[#8E8A82] uppercase tracking-[0.2em]">
+                {content.second_founder_name} · {content.second_founder_title}
+              </p>
+            </div>
+          </div>
+        )}
+
         {/* Core Values & Pillars */}
         <div className="space-y-12 mb-28">
           <div className="space-y-2">

@@ -56,6 +56,10 @@ export interface StudioContent {
   founder_title: string;
   founder_quote: string;
   founder_image_url: string;
+  second_founder_name?: string;
+  second_founder_title?: string;
+  second_founder_quote?: string;
+  second_founder_image_url?: string;
   stats: StudioStat[];
   updated_at?: string;
 }

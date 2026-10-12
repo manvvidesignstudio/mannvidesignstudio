@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Upload, X, Check, Image as ImageIcon, Loader2 } from 'lucide-react';
+import { Upload, X, Loader2 } from 'lucide-react';
 import { uploadImageToStorage } from '../../lib/storage';
 
 interface ImageUploaderProps {
@@ -10,6 +10,15 @@ interface ImageUploaderProps {
   className?: string;
 }
 
+const previewRatios = [
+  { label: 'Original', value: 'auto' },
+  { label: 'Square 1:1', value: '1 / 1' },
+  { label: 'Portrait 4:5', value: '4 / 5' },
+  { label: 'Portrait 3:4', value: '3 / 4' },
+  { label: 'Landscape 4:3', value: '4 / 3' },
+  { label: 'Landscape 16:9', value: '16 / 9' },
+] as const;
+
 export const ImageUploader: React.FC<ImageUploaderProps> = ({
   value,
   onChange,
@@ -19,6 +28,7 @@ export const ImageUploader: React.FC<ImageUploaderProps> = ({
 }) => {
   const [uploading, setUploading] = useState(false);
   const [error, setError] = useState('');
+  const [previewRatio, setPreviewRatio] = useState('4 / 5');
 
   const handleFileChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
@@ -49,22 +59,44 @@ export const ImageUploader: React.FC<ImageUploaderProps> = ({
       {label && <label className="text-xs font-semibold text-neutral-700 uppercase tracking-wider block">{label}</label>}
 
       {value ? (
-        <div className="relative group rounded-lg overflow-hidden border border-neutral-300 bg-neutral-100 max-w-md aspect-[16/10]">
-          <img src={value} alt="Preview" className="w-full h-full object-cover" />
-          <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center space-x-3">
-            <label className="cursor-pointer px-3 py-1.5 bg-white text-neutral-900 text-xs font-medium rounded shadow hover:bg-neutral-100">
-              Change
-              <input type="file" accept="image/*" onChange={handleFileChange} className="hidden" />
-            </label>
-            <button
-              type="button"
-              onClick={() => onChange('')}
-              className="p-1.5 bg-red-600 text-white rounded shadow hover:bg-red-700"
-              title="Remove image"
-            >
-              <X className="w-4 h-4" />
-            </button>
+        <div className="space-y-3 max-w-md">
+          <div
+            className="relative group rounded-lg overflow-hidden border border-neutral-300 bg-neutral-100 w-full"
+            style={{ aspectRatio: previewRatio === 'auto' ? undefined : previewRatio }}
+          >
+            <img src={value} alt="Preview" className="w-full h-full object-contain" />
+            <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center space-x-3">
+              <label className="cursor-pointer px-3 py-1.5 bg-white text-neutral-900 text-xs font-medium rounded shadow hover:bg-neutral-100">
+                Change
+                <input type="file" accept="image/*" onChange={handleFileChange} className="hidden" />
+              </label>
+              <button
+                type="button"
+                onClick={() => onChange('')}
+                className="p-1.5 bg-red-600 text-white rounded shadow hover:bg-red-700"
+                title="Remove image"
+              >
+                <X className="w-4 h-4" />
+              </button>
+            </div>
           </div>
+          <div className="flex flex-wrap gap-1.5">
+            {previewRatios.map((ratio) => (
+              <button
+                key={ratio.value}
+                type="button"
+                onClick={() => setPreviewRatio(ratio.value)}
+                className={`px-2 py-1 rounded border text-[10px] font-medium transition-colors ${
+                  previewRatio === ratio.value
+                    ? 'border-neutral-900 bg-neutral-900 text-white'
+                    : 'border-neutral-300 bg-white text-neutral-600 hover:border-neutral-500'
+                }`}
+              >
+                {ratio.label}
+              </button>
+            ))}
+          </div>
+          <p className="text-[10px] text-neutral-500">Preview only. The full image is always shown without cropping.</p>
         </div>
       ) : (
         <label className="border-2 border-dashed border-neutral-300 hover:border-neutral-500 rounded-lg p-6 flex flex-col items-center justify-center cursor-pointer bg-neutral-50 hover:bg-neutral-100 transition-colors max-w-md">

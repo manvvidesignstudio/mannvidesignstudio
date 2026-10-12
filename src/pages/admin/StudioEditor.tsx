@@ -197,6 +197,60 @@ export const StudioEditor: React.FC = () => {
           </div>
         </div>
 
+        {/* Second Founder */}
+        <div className="pt-6 border-t border-neutral-200 space-y-4">
+          <div>
+            <h3 className="text-sm font-bold text-neutral-900 uppercase tracking-wider">Second Founder</h3>
+            <p className="text-xs text-neutral-500 mt-1">Add another founder or leadership profile to the Studio page.</p>
+          </div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div className="space-y-1.5">
+              <label className="text-xs font-semibold text-neutral-700 uppercase tracking-wider block">Name</label>
+              <input
+                type="text"
+                name="second_founder_name"
+                value={form.second_founder_name || ''}
+                onChange={handleChange}
+                placeholder="Co-founder name"
+                className="w-full px-3.5 py-2 bg-neutral-50 border border-neutral-300 rounded-lg text-sm text-neutral-900"
+              />
+            </div>
+            <div className="space-y-1.5">
+              <label className="text-xs font-semibold text-neutral-700 uppercase tracking-wider block">Title</label>
+              <input
+                type="text"
+                name="second_founder_title"
+                value={form.second_founder_title || ''}
+                onChange={handleChange}
+                placeholder="Co-founder & Design Director"
+                className="w-full px-3.5 py-2 bg-neutral-50 border border-neutral-300 rounded-lg text-sm text-neutral-900"
+              />
+            </div>
+          </div>
+
+          <div className="space-y-1.5">
+            <label className="text-xs font-semibold text-neutral-700 uppercase tracking-wider block">Quote</label>
+            <textarea
+              name="second_founder_quote"
+              rows={2}
+              value={form.second_founder_quote || ''}
+              onChange={handleChange}
+              placeholder="A short leadership philosophy..."
+              className="w-full px-3.5 py-2.5 bg-neutral-50 border border-neutral-300 rounded-lg text-sm text-neutral-900 resize-none"
+            />
+          </div>
+
+          <ImageUploader
+            value={form.second_founder_image_url || ''}
+            onChange={(url) =>
+              setForm((prev) => (prev ? { ...prev, second_founder_image_url: url } : prev))
+            }
+            bucket="hero-images"
+            label="Second Founder Portrait Image"
+          />
+        </div>
+
         {/* Selected Statistics */}
         <div className="pt-6 border-t border-neutral-200 space-y-4">
           <div className="flex items-center justify-between">

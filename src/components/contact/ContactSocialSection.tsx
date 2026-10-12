@@ -1,7 +1,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { ArrowUpRight, MessageCircle, Mail, Sparkles, Send } from 'lucide-react';
-import { WhatsAppIcon, InstagramIcon, LinkedInIcon, PinterestIcon } from '../common/SocialIcons';
+import { WhatsAppIcon, InstagramIcon, } from '../common/SocialIcons';
 import { useSiteSettings } from '../../context/SiteSettingsContext';
 
 interface SocialChannel {
@@ -39,26 +39,6 @@ export const ContactSocialSection: React.FC = () => {
       icon: <InstagramIcon className="w-6 h-6 text-[#E1306C]" />,
       accentColor: 'border-[#E1306C]/30 hover:border-[#E1306C]',
       ctaText: 'Follow on Instagram',
-    },
-    {
-      name: 'LinkedIn Network',
-      handle: 'Manvvi Design Studio',
-      badge: 'Professional Discourse',
-      description: 'Architectural essays, industry partnerships, studio career vacancies, and executive turnkey case studies.',
-      href: settings.linkedin || '#',
-      icon: <LinkedInIcon className="w-6 h-6 text-[#0077B5]" />,
-      accentColor: 'border-[#0077B5]/30 hover:border-[#0077B5]',
-      ctaText: 'Connect on LinkedIn',
-    },
-    {
-      name: 'Pinterest Archives',
-      handle: '@manvvistudio',
-      badge: 'Curated Moodboards',
-      description: 'High-resolution aesthetic reference boards, tactile material junctions, mood lighting schemes, and collectible furniture.',
-      href: settings.pinterest || '#',
-      icon: <PinterestIcon className="w-6 h-6 text-[#E60023]" />,
-      accentColor: 'border-[#E60023]/30 hover:border-[#E60023]',
-      ctaText: 'Explore Moodboards',
     },
     {
       name: 'Studio Email Sanctuary',

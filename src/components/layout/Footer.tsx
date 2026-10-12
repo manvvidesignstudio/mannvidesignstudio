@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowUpRight } from 'lucide-react';
-import { WhatsAppIcon, InstagramIcon, LinkedInIcon, PinterestIcon } from '../common/SocialIcons';
+import { WhatsAppIcon, InstagramIcon, } from '../common/SocialIcons';
 import { useSiteSettings } from '../../context/SiteSettingsContext';
 
 export const Footer: React.FC = () => {
@@ -23,8 +23,13 @@ export const Footer: React.FC = () => {
         <div className="grid grid-cols-1 md:grid-cols-12 gap-12 lg:gap-16 pb-16 border-b border-[#F5F2EC]/10">
           {/* Brand & Narrative */}
           <div className="md:col-span-5 space-y-6">
-            <Link to="/" className="inline-block font-serif text-3xl sm:text-4xl tracking-widest text-[#F5F2EC]">
-              MANVVI<span className="text-[#C8A97E]">.</span>
+            <Link
+              to="/"
+              aria-label="Manvvi Design Studio home"
+              className="inline-flex flex-wrap items-baseline gap-x-2 gap-y-1 font-serif text-3xl sm:text-4xl tracking-widest text-[#F5F2EC]"
+            >
+              <span>MANVVI</span>
+              <span className="text-[#C8A97E]">DESIGN STUDIO</span>
             </Link>
             <p className="text-sm font-sans text-[#8E8A82] leading-relaxed max-w-sm">
               {settings.footer_description}
@@ -129,27 +134,7 @@ export const Footer: React.FC = () => {
                   <WhatsAppIcon className="w-4 h-4 transition-transform group-hover:scale-110" />
                 </a>
 
-                {/* LinkedIn */}
-                <a
-                  href={settings.linkedin || '#'}
-                  target="_blank"
-                  rel="noreferrer"
-                  title="Connect on LinkedIn"
-                  className="w-9 h-9 rounded-full bg-[#181715] hover:bg-[#0077B5] border border-[#F5F2EC]/10 hover:border-[#0077B5] flex items-center justify-center text-[#8E8A82] hover:text-white transition-all duration-300 group shadow-sm hover:scale-105"
-                >
-                  <LinkedInIcon className="w-4 h-4 transition-transform group-hover:scale-110" />
-                </a>
-
-                {/* Pinterest */}
-                <a
-                  href={settings.pinterest || '#'}
-                  target="_blank"
-                  rel="noreferrer"
-                  title="Explore Pinterest Moodboards"
-                  className="w-9 h-9 rounded-full bg-[#181715] hover:bg-[#E60023] border border-[#F5F2EC]/10 hover:border-[#E60023] flex items-center justify-center text-[#8E8A82] hover:text-white transition-all duration-300 group shadow-sm hover:scale-105"
-                >
-                  <PinterestIcon className="w-4 h-4 transition-transform group-hover:scale-110" />
-                </a>
+                
 
                 {/* Email */}
                 <a

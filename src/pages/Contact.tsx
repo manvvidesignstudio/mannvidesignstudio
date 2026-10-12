@@ -4,7 +4,7 @@ import { ArrowUpRight, CheckCircle2, MapPin, Mail, Phone, Clock } from 'lucide-r
 import { submitContactMessage } from '../lib/cmsStore';
 import { StudioMapSection } from '../components/contact/StudioMapSection';
 import { ContactSocialSection } from '../components/contact/ContactSocialSection';
-import { WhatsAppIcon, InstagramIcon, LinkedInIcon, PinterestIcon } from '../components/common/SocialIcons';
+import { WhatsAppIcon, InstagramIcon, } from '../components/common/SocialIcons';
 import { Reveal } from '../components/animations/Reveal';
 import { useSiteSettings } from '../context/SiteSettingsContext';
 
@@ -177,24 +177,7 @@ export const Contact: React.FC = () => {
                   <InstagramIcon className="w-3.5 h-3.5 text-[#E1306C]" />
                   <span>Instagram</span>
                 </a>
-                <a
-                  href={settings.linkedin || '#'}
-                  target="_blank"
-                  rel="noreferrer"
-                  className="inline-flex items-center space-x-2 px-3 py-2 bg-[#181715] hover:bg-[#0077B5]/15 border border-[#F5F2EC]/10 hover:border-[#0077B5]/50 text-xs text-[#8E8A82] hover:text-[#F5F2EC] rounded-lg transition-colors"
-                >
-                  <LinkedInIcon className="w-3.5 h-3.5 text-[#0077B5]" />
-                  <span>LinkedIn</span>
-                </a>
-                <a
-                  href={settings.pinterest || '#'}
-                  target="_blank"
-                  rel="noreferrer"
-                  className="inline-flex items-center space-x-2 px-3 py-2 bg-[#181715] hover:bg-[#E60023]/15 border border-[#F5F2EC]/10 hover:border-[#E60023]/50 text-xs text-[#8E8A82] hover:text-[#F5F2EC] rounded-lg transition-colors"
-                >
-                  <PinterestIcon className="w-3.5 h-3.5 text-[#E60023]" />
-                  <span>Pinterest</span>
-                </a>
+               
               </div>
             </div>
           </Reveal>

@@ -1,8 +1,16 @@
 @import "tailwindcss";
 
+@font-face {
+  font-family: "Moglan";
+  src: url("/fonts/Moglan_DEMO.ttf") format("truetype");
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+}
+
 @theme {
-  --font-serif: "Cormorant Garamond", Georgia, serif;
-  --font-sans: "Plus Jakarta Sans", system-ui, -apple-system, sans-serif;
+  --font-serif: "Moglan", serif;
+  --font-sans: "Moglan", sans-serif;
 
   --color-primary: #11110F;
   --color-ivory: #F5F2EC;
@@ -22,6 +30,10 @@
 html {
   background-color: #11110F;
   color: #F5F2EC;
+  font-family: var(--font-sans);
+}
+
+body {
   font-family: var(--font-sans);
 }
 
@@ -98,4 +110,3 @@ html.lenis, html.lenis body {
 .lenis.lenis-smooth iframe {
   pointer-events: none;
 }
-

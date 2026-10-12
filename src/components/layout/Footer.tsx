@@ -26,7 +26,7 @@ export const Footer: React.FC = () => {
             <Link
               to="/"
               aria-label="Manvvi Design Studio home"
-              className="inline-flex flex-wrap items-baseline gap-x-2 gap-y-1 font-serif text-3xl sm:text-4xl tracking-widest text-[#F5F2EC]"
+              className="inline-flex flex-col items-start font-brand text-3xl sm:text-4xl tracking-widest text-[#F5F2EC]"
             >
               <span>MANVVI</span>
               <span className="text-[#C8A97E]">DESIGN STUDIO</span>
@@ -154,7 +154,7 @@ export const Footer: React.FC = () => {
 
         {/* Bottom Micro Row */}
         <div className="pt-8 flex flex-col sm:flex-row items-center justify-between text-xs font-sans text-[#8E8A82] gap-4">
-          <p>© {currentYear} Manvvi Design Studio. All rights reserved.</p>
+          <p>© {currentYear} <span className="font-brand">Manvvi Design Studio</span>. All rights reserved.</p>
 
           <div className="flex items-center space-x-8">
             <Link to="/admin/login" className="hover:text-[#C8A97E] transition-colors">

@@ -153,7 +153,7 @@ export const StudioMapSection: React.FC = () => {
                     <Sparkles className="w-3 h-3" />
                     <span>Private Atelier</span>
                   </span>
-                  <h3 className="font-serif text-2xl text-[#F5F2EC] mt-1.5">Manvvi Design Studio</h3>
+                  <h3 className="font-brand text-2xl text-[#F5F2EC] mt-1.5">Manvvi Design Studio</h3>
                 </div>
 
                 <div className="w-9 h-9 rounded-full bg-[#181715] border border-[#C8A97E]/30 flex items-center justify-center text-[#C8A97E] flex-shrink-0">

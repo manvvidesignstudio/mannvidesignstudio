@@ -9,8 +9,9 @@
 }
 
 @theme {
-  --font-serif: "Moglan", serif;
-  --font-sans: "Moglan", sans-serif;
+  --font-serif: serif;
+  --font-sans: sans-serif;
+  --font-brand: "Moglan", serif;
 
   --color-primary: #11110F;
   --color-ivory: #F5F2EC;
@@ -63,6 +64,10 @@ body {
 
 .font-sans {
   font-family: var(--font-sans);
+}
+
+.font-brand {
+  font-family: var(--font-brand);
 }
 
 /* Editorial grain overlay */

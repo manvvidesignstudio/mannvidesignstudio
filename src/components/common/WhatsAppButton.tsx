@@ -73,7 +73,7 @@ export const WhatsAppButton: React.FC<WhatsAppButtonProps> = ({
                 </div>
                 <div>
                   <h4 className="text-sm font-medium text-[#F5F2EC] flex items-center space-x-1.5">
-                    <span>Manvvi Design Studio</span>
+                    <span className="font-brand">Manvvi Design Studio</span>
                     <Sparkles className="w-3 h-3 text-[#C8A97E]" />
                   </h4>
                   <p className="text-[11px] text-[#25D366] font-medium flex items-center space-x-1">

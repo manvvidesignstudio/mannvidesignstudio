@@ -85,7 +85,7 @@ export const Preloader: React.FC<{ onComplete?: () => void }> = ({ onComplete })
                 initial={{ opacity: 0, scale: 0.7 }}
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ duration: 0.55, delay: 0.55, ease: [0.16, 1, 0.3, 1] }}
-                className="relative font-serif text-6xl font-light tracking-[-0.16em] text-[#C8A97E]"
+                className="relative font-brand text-6xl font-light tracking-[-0.16em] text-[#C8A97E]"
               >
                 M
               </motion.span>
@@ -102,7 +102,7 @@ export const Preloader: React.FC<{ onComplete?: () => void }> = ({ onComplete })
                     delay: 0.55 + index * 0.07,
                     ease: [0.16, 1, 0.3, 1],
                   }}
-                  className="font-serif text-4xl font-normal tracking-[0.22em] text-[#F5F2EC] sm:text-6xl"
+                  className="font-brand text-4xl font-normal tracking-[0.22em] text-[#F5F2EC] sm:text-6xl"
                 >
                   {letter}
                 </motion.span>
@@ -113,7 +113,7 @@ export const Preloader: React.FC<{ onComplete?: () => void }> = ({ onComplete })
               initial={{ opacity: 0, y: 8 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.95 }}
-              className="mt-4 text-[10px] uppercase tracking-[0.45em] text-[#8E8A82]"
+              className="font-brand mt-4 text-[10px] uppercase tracking-[0.45em] text-[#8E8A82]"
             >
               Design Studio
             </motion.div>

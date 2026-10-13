@@ -50,7 +50,7 @@ export const Footer: React.FC = () => {
                 <Link to="/" className="hover:text-[#C8A97E] transition-colors">Home</Link>
               </li>
               <li>
-                <Link to="/studio" className="hover:text-[#C8A97E] transition-colors">The Studio</Link>
+                <Link to="/about" className="hover:text-[#C8A97E] transition-colors">About the Studio</Link>
               </li>
               <li>
                 <Link to="/services" className="hover:text-[#C8A97E] transition-colors">Services & Scope</Link>
@@ -157,6 +157,8 @@ export const Footer: React.FC = () => {
           <p>© {currentYear} <span className="font-brand">Manvvi Design Studio</span>. All rights reserved.</p>
 
           <div className="flex items-center space-x-8">
+            <Link to="/privacy" className="hover:text-[#C8A97E] transition-colors">Privacy</Link>
+            <Link to="/terms" className="hover:text-[#C8A97E] transition-colors">Terms</Link>
             <Link to="/admin/login" className="hover:text-[#C8A97E] transition-colors">
               Admin CMS
             </Link>

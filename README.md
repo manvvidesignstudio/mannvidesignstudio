@@ -39,7 +39,7 @@ A complete, production-ready, ultra-luxury website and custom Content Management
 | Route | Page | Description |
 | :--- | :--- | :--- |
 | `/` | **Home** | Fullscreen editorial hero with 3D monolith, Studio Intro, Selected Works grid, Philosophy, Services highlights, Process matrix, Featured project spotlight, Testimonials, Visual Journal, and Contact CTA. |
-| `/studio` | **The Studio** | Studio profile, founder story (*Manvvi Sharma*), design values, and editable key statistics. |
+| `/about` | **About the Studio** | Studio profile, founder story (*Manvvi Sharma*), design values, and editable key statistics. |
 | `/services` | **Services & Scope** | In-depth breakdown of 8 core disciplines: Residential, Luxury Villas, Apartments, Commercial, Hospitality, Space Planning, Furniture & Styling, and Turnkey Delivery. |
 | `/process` | **Our Process** | Interactive 6-stage architectural timeline (01 Discover, 02 Concept, 03 Design, 04 Detail, 05 Build, 06 Reveal) with synchronized imagery and deliverables. |
 | `/portfolio` | **Portfolio Index** | Filterable masonry/editorial project gallery (All, Residential, Commercial, Hospitality). |

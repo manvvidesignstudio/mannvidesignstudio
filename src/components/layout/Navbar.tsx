@@ -11,7 +11,7 @@ interface NavLinkItem {
 
 const navLinks: NavLinkItem[] = [
   { name: 'Home', path: '/' },
-  { name: 'Studio', path: '/studio' },
+  { name: 'About', path: '/about' },
   { name: 'Services', path: '/services' },
   { name: 'Process', path: '/process' },
   { name: 'Portfolio', path: '/portfolio' },

@@ -178,6 +178,14 @@ export const SettingsManager: React.FC = () => {
             <label className="text-xs font-semibold text-neutral-700 uppercase">Footer Description</label>
             <textarea name="footer_description" rows={3} value={form.footer_description || ''} onChange={handleChange} className="w-full px-3 py-2 bg-neutral-50 border border-neutral-300 rounded text-sm text-neutral-900 resize-none" />
           </div>
+          <div className="space-y-1">
+            <label className="text-xs font-semibold text-neutral-700 uppercase">Privacy Policy</label>
+            <textarea name="privacy_policy" rows={8} value={form.privacy_policy || ''} onChange={handleChange} placeholder="Write the policy shown on /privacy" className="w-full px-3 py-2 bg-neutral-50 border border-neutral-300 rounded text-sm text-neutral-900 resize-none" />
+          </div>
+          <div className="space-y-1">
+            <label className="text-xs font-semibold text-neutral-700 uppercase">Terms of Service</label>
+            <textarea name="terms_of_service" rows={8} value={form.terms_of_service || ''} onChange={handleChange} placeholder="Write the terms shown on /terms" className="w-full px-3 py-2 bg-neutral-50 border border-neutral-300 rounded text-sm text-neutral-900 resize-none" />
+          </div>
         </div>
 
         {/* SEO Metadata */}

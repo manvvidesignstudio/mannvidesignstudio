@@ -95,7 +95,7 @@ export const Home: React.FC = () => {
 
               <div className="pt-4">
                 <Link
-                  to="/studio"
+                  to="/about"
                   className="group inline-flex items-center space-x-2 text-xs uppercase tracking-[0.2em] text-[#C8A97E] hover:text-[#F5F2EC] transition-colors"
                 >
                   <span>Our Approach</span>

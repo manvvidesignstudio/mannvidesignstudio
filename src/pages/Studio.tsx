@@ -23,7 +23,7 @@ export const Studio: React.FC = () => {
       <Seo
         title="Interior Design Studio in Mumbai | Manvvi Design Studio"
         description="Discover the people, philosophy, and architectural approach behind Manvvi Design Studio, a Mumbai interior design studio rooted in Bandra."
-        path="/studio"
+        path="/about"
       />
       <div className="min-h-screen bg-[#11110F] text-[#F5F2EC] pt-32 pb-32">
       <div className="max-w-7xl mx-auto px-6 sm:px-8 md:px-12">
@@ -177,6 +177,27 @@ export const Studio: React.FC = () => {
               </p>
             </div>
           </div>
+
+          {content.recognitions && content.recognitions.length > 0 && (
+            <div className="space-y-8 mb-28">
+              <div className="space-y-2">
+                <span className="text-[11px] uppercase tracking-[0.25em] text-[#C8A97E]">Recognition & Credentials</span>
+                <h2 className="font-serif text-3xl sm:text-4xl text-[#F5F2EC]">Work grounded in practice.</h2>
+              </div>
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                {content.recognitions.map((item, index) => (
+                  <Reveal key={`${item.title}-${index}`} delay={index * 0.08}>
+                    <div className="h-full p-6 border border-[#F5F2EC]/10 bg-[#141311] hover:border-[#C8A97E]/60 transition-colors">
+                      <p className="text-xs uppercase tracking-[0.2em] text-[#C8A97E]">{item.year}</p>
+                      <h3 className="mt-4 font-serif text-2xl text-[#F5F2EC]">{item.title}</h3>
+                      <p className="mt-2 text-sm text-[#F5F2EC]/80">{item.issuer}</p>
+                      {item.description && <p className="mt-4 text-xs leading-relaxed text-[#8E8A82]">{item.description}</p>}
+                    </div>
+                  </Reveal>
+                ))}
+              </div>
+            </div>
+          )}
         </div>
 
         {/* CTA Banner */}

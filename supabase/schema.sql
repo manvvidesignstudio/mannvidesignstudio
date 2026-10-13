@@ -46,6 +46,8 @@ create table if not exists site_settings (
   google_maps_url text not null default 'https://maps.google.com/?q=Manvvi+Design+Studio',
   google_maps_embed_url text not null default 'https://www.google.com/maps?q=Manvvi+Design+Studio&output=embed',
   footer_description text default 'A full-scale residential and commercial interior design studio.',
+  privacy_policy text,
+  terms_of_service text,
   working_hours text default 'Monday – Saturday: 10:00 AM – 7:00 PM IST',
   meta_title text default 'Manvvi Design Studio | Interior Architecture & Design Studio in Pune',
   meta_description text default 'A Pune-based design studio shaping homes and workspaces with restraint, craft, and an architectural point of view.',
@@ -58,6 +60,8 @@ alter table site_settings add column if not exists whatsapp_default_message text
 alter table site_settings add column if not exists google_maps_url text not null default 'https://maps.google.com/?q=Manvvi+Design+Studio';
 alter table site_settings add column if not exists google_maps_embed_url text not null default 'https://www.google.com/maps?q=Manvvi+Design+Studio&output=embed';
 alter table site_settings add column if not exists footer_description text default 'A full-scale residential and commercial interior design studio.';
+alter table site_settings add column if not exists privacy_policy text;
+alter table site_settings add column if not exists terms_of_service text;
 
 alter table site_settings enable row level security;
 drop policy if exists "Public read site_settings" on site_settings;
@@ -111,9 +115,13 @@ create table if not exists studio_content (
     {"value": "6+", "label": "Years Experience", "sub": "Specialized luxury architectural practice"},
     {"value": "100%", "label": "Personalized Design", "sub": "Bespoke millwork, stone & spatial curation"}
   ]'::jsonb,
+  recognitions jsonb not null default '[
+    {"title": "Recognition placeholder", "issuer": "Replace with a verified award or certification", "year": "20XX", "description": "Update this entry in the Studio CMS before publishing."}
+  ]'::jsonb,
   updated_at timestamptz not null default now()
 );
 
+alter table studio_content add column if not exists recognitions jsonb not null default '[]'::jsonb;
 alter table studio_content add column if not exists second_founder_name text;
 alter table studio_content add column if not exists second_founder_title text;
 alter table studio_content add column if not exists second_founder_quote text;

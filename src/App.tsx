@@ -15,6 +15,7 @@ const Portfolio = lazy(() => import('./pages/Portfolio').then(m => ({ default: m
 const ProjectDetail = lazy(() => import('./pages/ProjectDetail').then(m => ({ default: m.ProjectDetail })));
 const Contact = lazy(() => import('./pages/Contact').then(m => ({ default: m.Contact })));
 const NotFound = lazy(() => import('./pages/NotFound').then(m => ({ default: m.NotFound })));
+const LegalPage = lazy(() => import('./pages/LegalPage').then(m => ({ default: m.LegalPage })));
 
 // Lazy loaded admin pages
 const Login = lazy(() => import('./pages/admin/Login').then(m => ({ default: m.Login })));
@@ -63,12 +64,14 @@ export const App: React.FC = () => {
             {/* Public Website Routes */}
             <Route element={<PublicLayout />}>
               <Route index element={<Home />} />
-              <Route path="studio" element={<Studio />} />
+              <Route path="about" element={<Studio />} />
               <Route path="services" element={<Services />} />
               <Route path="process" element={<Process />} />
               <Route path="portfolio" element={<Portfolio />} />
               <Route path="portfolio/:slug" element={<ProjectDetail />} />
               <Route path="contact" element={<Contact />} />
+              <Route path="privacy" element={<LegalPage type="privacy" />} />
+              <Route path="terms" element={<LegalPage type="terms" />} />
             </Route>
 
             {/* Admin Auth Route */}

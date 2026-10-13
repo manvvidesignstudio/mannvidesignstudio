@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Save, CheckCircle2, Plus, Trash2 } from 'lucide-react';
 import { getStudioContent, updateStudioContent } from '../../lib/cmsStore';
-import { StudioContent, StudioStat } from '../../types/database';
+import { StudioContent, StudioStat, StudioRecognition } from '../../types/database';
 import { ImageUploader } from '../../components/admin/ImageUploader';
 
 export const StudioEditor: React.FC = () => {
@@ -43,6 +43,30 @@ export const StudioEditor: React.FC = () => {
       stats: prev.stats.filter((_, i) => i !== index),
     }));
   };
+
+  const handleRecognitionChange = (index: number, field: keyof StudioRecognition, value: string) => {
+    setForm((prev) => {
+      if (!prev) return prev;
+      const recognitions = [...(prev.recognitions || [])];
+      recognitions[index] = { ...recognitions[index], [field]: value };
+      return { ...prev, recognitions };
+    });
+  };
+
+  const addRecognition = () => setForm((prev) => prev && ({
+    ...prev,
+    recognitions: [...(prev.recognitions || []), {
+      title: 'Recognition placeholder',
+      issuer: 'Replace with verified award or certification',
+      year: '20XX',
+      description: 'Update this entry before publishing.',
+    }],
+  }));
+
+  const removeRecognition = (index: number) => setForm((prev) => prev && ({
+    ...prev,
+    recognitions: (prev.recognitions || []).filter((_, i) => i !== index),
+  }));
 
   const handleSave = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -313,6 +337,26 @@ export const StudioEditor: React.FC = () => {
               </div>
             ))}
           </div>
+        </div>
+
+        <div className="pt-6 border-t border-neutral-200 space-y-4">
+          <div className="flex items-center justify-between">
+            <div>
+              <h3 className="text-sm font-bold text-neutral-900 uppercase tracking-wider">Awards & Recognition</h3>
+              <p className="text-xs text-neutral-500 mt-1">Replace placeholder entries with verified credentials before publishing.</p>
+            </div>
+            <button type="button" onClick={addRecognition} className="flex items-center space-x-1 text-xs text-[#C8A97E] font-medium">
+              <Plus className="w-3.5 h-3.5" /><span>Add Recognition</span>
+            </button>
+          </div>
+          {(form.recognitions || []).map((item, i) => (
+            <div key={i} className="grid grid-cols-1 sm:grid-cols-4 gap-2 p-4 border border-neutral-200 rounded-lg bg-neutral-50">
+              {(['title', 'issuer', 'year', 'description'] as const).map((field) => (
+                <input key={field} value={item[field] || ''} onChange={(e) => handleRecognitionChange(i, field, e.target.value)} placeholder={field} className="px-2 py-1.5 bg-white border border-neutral-300 rounded text-sm text-neutral-900" />
+              ))}
+              <button type="button" onClick={() => removeRecognition(i)} className="text-xs text-red-600 text-left">Remove</button>
+            </div>
+          ))}
         </div>
 
         {/* Submit */}

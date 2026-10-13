@@ -17,7 +17,7 @@ interface StaticPage {
 
 const publicPages: StaticPage[] = [
   ['/', 'Interior Design Studio in Mumbai | Manvvi Design Studio', 'Manvvi Design Studio is a Mumbai-based interior architecture studio creating considered residential and commercial spaces with restraint, craft, and permanence.', 'Interior design studio in Mumbai'],
-  ['/studio', 'Interior Design Studio in Mumbai | Manvvi Design Studio', 'Discover the people, philosophy, and architectural approach behind Manvvi Design Studio, a Mumbai interior design studio rooted in Bandra.', 'Interior design studio rooted in Bandra, Mumbai'],
+  ['/about', 'Interior Design Studio in Mumbai | Manvvi Design Studio', 'Discover the people, philosophy, and architectural approach behind Manvvi Design Studio, a Mumbai interior design studio rooted in Bandra.', 'Interior design studio rooted in Bandra, Mumbai'],
   ['/services', 'Interior Design Services in Mumbai | Manvvi Design Studio', 'Explore residential, commercial, and hospitality interior design services by Manvvi Design Studio in Mumbai, from concept to turnkey delivery.', 'Interior design services for homes and commercial spaces in Mumbai'],
   ['/process', 'Interior Design Process in Mumbai | Manvvi Design Studio', 'Learn how Manvvi Design Studio develops Mumbai interiors through a disciplined process from daylight study and concept design to final key reveal.', 'Our interior design process in Mumbai'],
   ['/portfolio', 'Interior Design Projects in Mumbai | Manvvi Design Studio', 'Explore residential, commercial, and hospitality interior design projects by Manvvi Design Studio across Mumbai and Western India.', 'Interior design projects in Mumbai and Western India'],

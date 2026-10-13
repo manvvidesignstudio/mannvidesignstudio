@@ -45,6 +45,13 @@ export interface StudioStat {
   sub?: string;
 }
 
+export interface StudioRecognition {
+  title: string;
+  issuer: string;
+  year: string;
+  description?: string;
+}
+
 export interface StudioContent {
   id?: string;
   intro_eyebrow: string;
@@ -61,6 +68,7 @@ export interface StudioContent {
   second_founder_quote?: string;
   second_founder_image_url?: string;
   stats: StudioStat[];
+  recognitions?: StudioRecognition[];
   updated_at?: string;
 }
 
@@ -138,6 +146,8 @@ export interface SiteSettings {
   city: string;
   state: string;
   country: string;
+  privacy_policy?: string;
+  terms_of_service?: string;
   address: string;
   email: string;
   phone: string;

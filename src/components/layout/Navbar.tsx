@@ -57,8 +57,8 @@ export const Navbar: React.FC = () => {
             to="/"
             className="group min-w-0 shrink-0 flex items-baseline tracking-wider font-brand text-[#F5F2EC] hover:text-[#C8A97E] transition-colors"
           >
-            <span className="whitespace-nowrap text-base sm:text-xl md:text-2xl font-medium tracking-[0.08em] uppercase">
-              MANVVI Design Studio
+            <span className="whitespace-nowrap text-base sm:text-xl md:text-2xl font-medium tracking-[0.08em]">
+            Manvvi Design Studio
             </span>
           </Link>
 

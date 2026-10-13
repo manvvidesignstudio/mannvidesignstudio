@@ -29,7 +29,7 @@ export const Footer: React.FC = () => {
               className="inline-flex flex-col items-start font-brand text-3xl sm:text-4xl tracking-widest text-[#F5F2EC]"
             >
               <span>MANVVI</span>
-              <span className="text-[#C8A97E]">DESIGN STUDIO</span>
+              <span className="text-[#C8A97E]">Design Studio</span>
             </Link>
             <p className="text-sm font-sans text-[#8E8A82] leading-relaxed max-w-sm">
               {settings.footer_description}

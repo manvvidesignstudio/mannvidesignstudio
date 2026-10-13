@@ -3,6 +3,7 @@ import { useNavigate, useLocation, Link } from 'react-router-dom';
 import { Lock, Mail, ArrowRight, ShieldCheck } from 'lucide-react';
 import { useAuth } from '../../context/AuthContext';
 import { isSupabaseConfigured } from '../../lib/supabase';
+import { Seo } from '../../components/seo/Seo';
 
 export const Login: React.FC = () => {
   const [email, setEmail] = useState('');
@@ -31,7 +32,13 @@ export const Login: React.FC = () => {
   };
 
   return (
-    <div className="min-h-screen bg-[#F7F6F3] text-neutral-900 flex flex-col justify-center py-12 sm:px-6 lg:px-8 font-sans">
+    <>
+      <Seo
+        title="Admin Login | Manvvi Design Studio"
+        description="Private administration login for Manvvi Design Studio."
+        noIndex
+      />
+      <div className="min-h-screen bg-[#F7F6F3] text-neutral-900 flex flex-col justify-center py-12 sm:px-6 lg:px-8 font-sans">
       <div className="sm:mx-auto sm:w-full sm:max-w-md text-center space-y-2">
         <Link to="/" className="inline-block font-serif text-3xl tracking-widest text-neutral-900 font-medium">
           MANVVI<span className="text-[#C8A97E]">.</span>
@@ -109,6 +116,7 @@ export const Login: React.FC = () => {
           </Link>
         </div>
       </div>
-    </div>
+      </div>
+    </>
   );
 };

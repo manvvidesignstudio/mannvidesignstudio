@@ -25,6 +25,32 @@ const prerender = require('vite-plugin-prerender') as {
   PuppeteerRenderer: new (options: Record<string, unknown>) => unknown
 }
 
+const escapeXml = (value: string): string =>
+  value.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+
+function seoFilesPlugin(routes: string[], siteUrl: string): Plugin {
+  return {
+    name: 'generate-seo-files',
+    generateBundle() {
+      const urls = routes
+        .map((route) => `${siteUrl}${route === '/' ? '' : route}`)
+        .map((url) => `  <url>\n    <loc>${escapeXml(url)}</loc>\n  </url>`)
+        .join('\n')
+
+      this.emitFile({
+        type: 'asset',
+        fileName: 'sitemap.xml',
+        source: `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${urls}\n</urlset>\n`,
+      })
+      this.emitFile({
+        type: 'asset',
+        fileName: 'robots.txt',
+        source: `User-agent: *\nDisallow: /admin\n\nSitemap: ${siteUrl}/sitemap.xml\n`,
+      })
+    },
+  }
+}
+
 async function getProjectRoutes(mode: string): Promise<string[]> {
   const env = loadEnv(mode, process.cwd(), '')
   const supabaseUrl = env.VITE_SUPABASE_URL
@@ -53,18 +79,25 @@ async function getProjectRoutes(mode: string): Promise<string[]> {
 
 // https://vite.dev/config/
 export default defineConfig(async ({ mode }) => ({
-  plugins: [
-    react(),
-    tailwindcss(),
-    prerender({
-      staticDir: path.resolve(__dirname, 'dist'),
-      routes: [...publicRoutes, ...(await getProjectRoutes(mode))],
-      renderer: new prerender.PuppeteerRenderer({
-        renderAfterTime: 1500,
-        maxConcurrentRoutes: 2,
+  plugins: await (async () => {
+    const env = loadEnv(mode, process.cwd(), '')
+    const siteUrl = (env.VITE_SITE_URL || 'https://manvvidesignstudio.in').replace(/\/$/, '')
+    const routes = [...publicRoutes, ...(await getProjectRoutes(mode))]
+
+    return [
+      react(),
+      tailwindcss(),
+      seoFilesPlugin(routes, siteUrl),
+      prerender({
+        staticDir: path.resolve(__dirname, 'dist'),
+        routes,
+        renderer: new prerender.PuppeteerRenderer({
+          renderAfterTime: 1500,
+          maxConcurrentRoutes: 2,
+        }),
       }),
-    }),
-  ],
+    ]
+  })(),
   resolve: {
     alias: {
       '@': path.resolve(__dirname, './src'),

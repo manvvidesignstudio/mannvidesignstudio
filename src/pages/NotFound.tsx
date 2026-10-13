@@ -1,10 +1,17 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowLeft } from 'lucide-react';
+import { Seo } from '../components/seo/Seo';
 
 export const NotFound: React.FC = () => {
   return (
-    <div className="min-h-screen bg-[#11110F] text-[#F5F2EC] flex flex-col items-center justify-center px-6 text-center">
+    <>
+      <Seo
+        title="Page Not Found | Manvvi Design Studio, Mumbai"
+        description="The requested page could not be found on the Manvvi Design Studio website."
+        noIndex
+      />
+      <div className="min-h-screen bg-[#11110F] text-[#F5F2EC] flex flex-col items-center justify-center px-6 text-center">
       <div className="space-y-6 max-w-md">
         <span className="text-[11px] font-sans uppercase tracking-[0.3em] text-[#C8A97E] block">404 — Not Found</span>
         <h1 className="font-serif text-5xl sm:text-6xl text-[#F5F2EC] font-normal">Page Uncharted</h1>
@@ -21,6 +28,7 @@ export const NotFound: React.FC = () => {
           </Link>
         </div>
       </div>
-    </div>
+      </div>
+    </>
   );
 };

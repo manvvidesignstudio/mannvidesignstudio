@@ -18,6 +18,7 @@ import {
   Bell
 } from 'lucide-react';
 import { useAuth } from '../../context/AuthContext';
+import { Seo } from '../seo/Seo';
 
 const navItems = [
   { name: 'Dashboard', path: '/admin', icon: LayoutDashboard },
@@ -44,7 +45,13 @@ export const AdminLayout: React.FC = () => {
   };
 
   return (
-    <div className="min-h-screen bg-[#F7F6F3] text-neutral-900 flex font-sans antialiased">
+    <>
+      <Seo
+        title="Admin | Manvvi Design Studio"
+        description="Private administration area for Manvvi Design Studio."
+        noIndex
+      />
+      <div className="min-h-screen bg-[#F7F6F3] text-neutral-900 flex font-sans antialiased">
       {/* Sidebar for Desktop */}
       <aside className="hidden lg:flex flex-col w-64 bg-white border-r border-neutral-200 fixed inset-y-0 z-30 shadow-sm">
         {/* Brand Banner */}
@@ -192,6 +199,7 @@ export const AdminLayout: React.FC = () => {
           </div>
         </div>
       )}
-    </div>
+      </div>
+    </>
   );
 };

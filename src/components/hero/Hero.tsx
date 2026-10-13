@@ -69,8 +69,8 @@ export const Hero: React.FC<HeroProps> = ({ content }) => {
               transition={{ duration: 1, delay: 0.5, ease: [0.16, 1, 0.3, 1] }}
               className="font-serif text-4xl sm:text-6xl md:text-7xl lg:text-8xl leading-[1.05] tracking-tight text-[#F5F2EC] font-normal"
             >
-              Interiors built around <br className="hidden sm:inline" />
-              <span className="italic font-light text-[#E8E4DC]">how you actually live.</span>
+              Interior design in Mumbai, <br className="hidden sm:inline" />
+              <span className="italic font-light text-[#E8E4DC]">built around how you live.</span>
             </motion.h1>
           </div>
 

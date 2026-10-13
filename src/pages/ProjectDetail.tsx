@@ -6,6 +6,7 @@ import { getProjectBySlug, getProjects } from '../lib/cmsStore';
 import { Project } from '../types/database';
 import { ProjectCard } from '../components/portfolio/ProjectCard';
 import { Reveal, ParallaxImage } from '../components/animations/Reveal';
+import { Seo } from '../components/seo/Seo';
 
 export const ProjectDetail: React.FC = () => {
   const { slug } = useParams<{ slug: string }>();
@@ -34,24 +35,37 @@ export const ProjectDetail: React.FC = () => {
 
   if (loading) {
     return (
-      <div className="min-h-screen bg-[#11110F] flex items-center justify-center text-[#F5F2EC]">
-        <div className="w-8 h-8 border-2 border-[#C8A97E] border-t-transparent rounded-full animate-spin" />
-      </div>
+      <>
+        <Seo
+          title="Interior Design Project | Manvvi Design Studio, Mumbai"
+          description="Explore an interior architecture project by Manvvi Design Studio in Mumbai."
+        />
+        <div className="min-h-screen bg-[#11110F] flex items-center justify-center text-[#F5F2EC]">
+          <div className="w-8 h-8 border-2 border-[#C8A97E] border-t-transparent rounded-full animate-spin" />
+        </div>
+      </>
     );
   }
 
   if (!project) {
     return (
-      <div className="min-h-screen bg-[#11110F] flex flex-col items-center justify-center text-[#F5F2EC] px-6 text-center space-y-6">
-        <h1 className="font-serif text-4xl">Project Not Found</h1>
-        <p className="text-sm text-[#8E8A82]">The requested project could not be located in our portfolio.</p>
-        <button
-          onClick={() => navigate('/portfolio')}
-          className="px-6 py-3 border border-[#C8A97E] text-[#C8A97E] text-xs uppercase tracking-[0.2em] hover:bg-[#C8A97E] hover:text-[#11110F] transition-colors"
-        >
-          Return to Portfolio
-        </button>
-      </div>
+      <>
+        <Seo
+          title="Project Not Found | Manvvi Design Studio, Mumbai"
+          description="The requested interior design project could not be located in the Manvvi Design Studio portfolio."
+          noIndex
+        />
+        <div className="min-h-screen bg-[#11110F] flex flex-col items-center justify-center text-[#F5F2EC] px-6 text-center space-y-6">
+          <h1 className="font-serif text-4xl">Project Not Found</h1>
+          <p className="text-sm text-[#8E8A82]">The requested project could not be located in our portfolio.</p>
+          <button
+            onClick={() => navigate('/portfolio')}
+            className="px-6 py-3 border border-[#C8A97E] text-[#C8A97E] text-xs uppercase tracking-[0.2em] hover:bg-[#C8A97E] hover:text-[#11110F] transition-colors"
+          >
+            Return to Portfolio
+          </button>
+        </div>
+      </>
     );
   }
 
@@ -60,7 +74,15 @@ export const ProjectDetail: React.FC = () => {
     .slice(0, 2);
 
   return (
-    <article className="min-h-screen bg-[#11110F] text-[#F5F2EC]">
+    <>
+      <Seo
+        title={`${project.title} | Mumbai Interior Design`}
+        description={`Explore ${project.title}, a ${project.category.toLowerCase()} interior design project in ${project.location} by Manvvi Design Studio. ${project.short_description}`}
+        path={`/portfolio/${project.slug}`}
+        image={project.cover_image}
+        type="article"
+      />
+      <article className="min-h-screen bg-[#11110F] text-[#F5F2EC]">
       {/* Fullscreen Hero Cover */}
       <section className="relative w-full h-[80vh] min-h-[600px] overflow-hidden bg-[#181715]">
         <ParallaxImage
@@ -322,6 +344,7 @@ export const ProjectDetail: React.FC = () => {
           </div>
         </section>
       )}
-    </article>
+      </article>
+    </>
   );
 };

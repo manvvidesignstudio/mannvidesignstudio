@@ -6,6 +6,7 @@ import { Hero } from '../components/hero/Hero';
 import { ProjectCard } from '../components/portfolio/ProjectCard';
 import { Reveal, ParallaxImage } from '../components/animations/Reveal';
 import { useSiteSettings } from '../context/SiteSettingsContext';
+import { Seo } from '../components/seo/Seo';
 import {
   getHeroContent,
   getStudioContent,
@@ -65,7 +66,13 @@ export const Home: React.FC = () => {
   const spotlightProject = projects.find((p) => p.slug === 'the-courtyard-residence') || projects[0];
 
   return (
-    <div className="w-full bg-[#11110F] text-[#F5F2EC]">
+    <>
+      <Seo
+        title="Interior Design Studio in Mumbai | Manvvi Design Studio"
+        description="Manvvi Design Studio is a Mumbai-based interior architecture studio creating considered residential and commercial spaces with restraint, craft, and permanence."
+        path="/"
+      />
+      <div className="w-full bg-[#11110F] text-[#F5F2EC]">
       {/* 1. HERO SECTION */}
       <Hero content={heroContent} />
 
@@ -477,6 +484,7 @@ export const Home: React.FC = () => {
           </div>
         </div>
       </section>
-    </div>
+      </div>
+    </>
   );
 };

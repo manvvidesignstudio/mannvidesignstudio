@@ -7,6 +7,7 @@ import { ContactSocialSection } from '../components/contact/ContactSocialSection
 import { WhatsAppIcon, InstagramIcon, } from '../components/common/SocialIcons';
 import { Reveal } from '../components/animations/Reveal';
 import { useSiteSettings } from '../context/SiteSettingsContext';
+import { Seo } from '../components/seo/Seo';
 
 export const Contact: React.FC = () => {
   const settings = useSiteSettings();
@@ -72,7 +73,13 @@ export const Contact: React.FC = () => {
   const whatsappUrl = `https://wa.me/${settings.whatsapp_number}?text=${encodeURIComponent(settings.whatsapp_default_message)}`;
 
   return (
-    <div className="min-h-screen bg-[#11110F] text-[#F5F2EC] pt-32 pb-32">
+    <>
+      <Seo
+        title="Contact Our Mumbai Design Studio | Manvvi Design Studio"
+        description="Start a conversation with Manvvi Design Studio for residential, commercial, or hospitality interior design in Mumbai and beyond."
+        path="/contact"
+      />
+      <div className="min-h-screen bg-[#11110F] text-[#F5F2EC] pt-32 pb-32">
       <div className="max-w-7xl mx-auto px-6 sm:px-8 md:px-12">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 lg:gap-20">
           {/* Left Column: Heading & Atelier Information */}
@@ -86,8 +93,8 @@ export const Contact: React.FC = () => {
               </div>
 
               <h1 className="font-serif text-4xl sm:text-6xl text-[#F5F2EC] font-normal leading-[1.1] tracking-tight">
-                Let's create a space <br />
-                <span className="italic text-[#E8E4DC]">worth living in.</span>
+                Start your interior design project <br />
+                <span className="italic text-[#E8E4DC]">in Mumbai.</span>
               </h1>
 
               <p className="text-base font-sans text-[#8E8A82] leading-relaxed font-light">
@@ -357,6 +364,7 @@ export const Contact: React.FC = () => {
 
       {/* Curated Digital Universe & Social Channels Showcase */}
       <ContactSocialSection />
-    </div>
+      </div>
+    </>
   );
 };

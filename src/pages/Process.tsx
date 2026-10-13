@@ -5,6 +5,7 @@ import { Check, ArrowRight } from 'lucide-react';
 import { getProcessSteps } from '../lib/cmsStore';
 import { ProcessStep } from '../types/database';
 import { Reveal } from '../components/animations/Reveal';
+import { Seo } from '../components/seo/Seo';
 
 export const Process: React.FC = () => {
   const [steps, setSteps] = useState<ProcessStep[]>([]);
@@ -19,7 +20,13 @@ export const Process: React.FC = () => {
   const activeStep = steps[activeStepIndex] || steps[0];
 
   return (
-    <div className="min-h-screen bg-[#11110F] text-[#F5F2EC] pt-32 pb-32">
+    <>
+      <Seo
+        title="Interior Design Process in Mumbai | Manvvi Design Studio"
+        description="Learn how Manvvi Design Studio develops Mumbai interiors through a disciplined process from daylight study and concept design to final key reveal."
+        path="/process"
+      />
+      <div className="min-h-screen bg-[#11110F] text-[#F5F2EC] pt-32 pb-32">
       <div className="max-w-7xl mx-auto px-6 sm:px-8 md:px-12">
         {/* Header */}
         <div className="max-w-3xl space-y-6 mb-16 sm:mb-24">
@@ -31,7 +38,7 @@ export const Process: React.FC = () => {
           </div>
 
           <h1 className="font-serif text-4xl sm:text-6xl md:text-7xl font-normal leading-[1.08] tracking-tight">
-            Six disciplined phases. <br />
+            Our interior design process in Mumbai. <br />
             <span className="italic text-[#E8E4DC]">From daylight study to key reveal.</span>
           </h1>
 
@@ -194,6 +201,7 @@ export const Process: React.FC = () => {
           </div>
         </div>
       </div>
-    </div>
+      </div>
+    </>
   );
 };

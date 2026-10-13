@@ -4,6 +4,7 @@ import { ProjectCard } from '../components/portfolio/ProjectCard';
 import { getProjects } from '../lib/cmsStore';
 import { Project } from '../types/database';
 import { Reveal } from '../components/animations/Reveal';
+import { Seo } from '../components/seo/Seo';
 
 type FilterCategory = 'All' | 'Residential' | 'Commercial' | 'Hospitality';
 
@@ -26,7 +27,13 @@ export const Portfolio: React.FC = () => {
   });
 
   return (
-    <div className="min-h-screen bg-[#11110F] text-[#F5F2EC] pt-32 pb-32">
+    <>
+      <Seo
+        title="Interior Design Projects in Mumbai | Manvvi Design Studio"
+        description="Explore residential, commercial, and hospitality interior design projects by Manvvi Design Studio across Mumbai and Western India."
+        path="/portfolio"
+      />
+      <div className="min-h-screen bg-[#11110F] text-[#F5F2EC] pt-32 pb-32">
       <div className="max-w-7xl mx-auto px-6 sm:px-8 md:px-12">
         {/* Editorial Page Header */}
         <div className="max-w-3xl space-y-6 mb-16 sm:mb-24">
@@ -38,7 +45,7 @@ export const Portfolio: React.FC = () => {
           </div>
 
           <h1 className="font-serif text-4xl sm:text-6xl md:text-7xl font-normal leading-[1.08] tracking-tight">
-            Spaces sculpted with restraint & permanence.
+            Interior design projects in Mumbai and Western India.
           </h1>
 
           <p className="text-base sm:text-lg font-sans text-[#8E8A82] leading-relaxed max-w-2xl font-light">
@@ -110,6 +117,7 @@ export const Portfolio: React.FC = () => {
           </div>
         )}
       </div>
-    </div>
+      </div>
+    </>
   );
 };

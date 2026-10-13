@@ -5,6 +5,7 @@ import { ArrowRight, Sparkles } from 'lucide-react';
 import { getStudioContent } from '../lib/cmsStore';
 import { StudioContent } from '../types/database';
 import { Reveal, ParallaxImage } from '../components/animations/Reveal';
+import { Seo } from '../components/seo/Seo';
 
 export const Studio: React.FC = () => {
   const [content, setContent] = useState<StudioContent | null>(null);
@@ -18,7 +19,13 @@ export const Studio: React.FC = () => {
   if (!content) return <div className="min-h-screen bg-[#11110F]" />;
 
   return (
-    <div className="min-h-screen bg-[#11110F] text-[#F5F2EC] pt-32 pb-32">
+    <>
+      <Seo
+        title="Interior Design Studio in Mumbai | Manvvi Design Studio"
+        description="Discover the people, philosophy, and architectural approach behind Manvvi Design Studio, a Mumbai interior design studio rooted in Bandra."
+        path="/studio"
+      />
+      <div className="min-h-screen bg-[#11110F] text-[#F5F2EC] pt-32 pb-32">
       <div className="max-w-7xl mx-auto px-6 sm:px-8 md:px-12">
         {/* Eyebrow & Hero Header */}
         <div className="max-w-4xl space-y-6 mb-20 sm:mb-28">
@@ -35,8 +42,8 @@ export const Studio: React.FC = () => {
             transition={{ duration: 0.8 }}
             className="font-serif text-4xl sm:text-6xl md:text-7xl font-normal leading-[1.08] tracking-tight"
           >
-            Rooted in Bandra. <br />
-            <span className="italic text-[#E8E4DC]">Shaped for timeless living.</span>
+            Interior design studio rooted in Bandra, &nbsp;
+            <span className="italic text-[#E8E4DC]">Mumbai.</span>
           </motion.h1>
 
           <p className="text-base sm:text-lg md:text-xl font-sans text-[#F5F2EC]/85 leading-relaxed font-light max-w-3xl">
@@ -190,6 +197,7 @@ export const Studio: React.FC = () => {
           </Link>
         </div>
       </div>
-    </div>
+      </div>
+    </>
   );
 };

@@ -5,6 +5,7 @@ import { ArrowUpRight, Check, Compass, Layers, Home, Crown, Building2, Briefcase
 import { getServices } from '../lib/cmsStore';
 import { Service } from '../types/database';
 import { Reveal } from '../components/animations/Reveal';
+import { Seo } from '../components/seo/Seo';
 
 export const Services: React.FC = () => {
   const [services, setServices] = useState<Service[]>([]);
@@ -29,7 +30,13 @@ export const Services: React.FC = () => {
   };
 
   return (
-    <div className="min-h-screen bg-[#11110F] text-[#F5F2EC] pt-32 pb-32">
+    <>
+      <Seo
+        title="Interior Design Services in Mumbai | Manvvi Design Studio"
+        description="Explore residential, commercial, and hospitality interior design services by Manvvi Design Studio in Mumbai, from concept to turnkey delivery."
+        path="/services"
+      />
+      <div className="min-h-screen bg-[#11110F] text-[#F5F2EC] pt-32 pb-32">
       <div className="max-w-7xl mx-auto px-6 sm:px-8 md:px-12">
         {/* Header */}
         <div className="max-w-3xl space-y-6 mb-20 sm:mb-28">
@@ -41,7 +48,7 @@ export const Services: React.FC = () => {
           </div>
 
           <h1 className="font-serif text-4xl sm:text-6xl md:text-7xl font-normal leading-[1.08] tracking-tight">
-            Interior architecture for spaces of quiet distinction.
+            Interior design services for homes and commercial spaces in Mumbai.
           </h1>
 
           <p className="text-base sm:text-lg font-sans text-[#8E8A82] leading-relaxed max-w-2xl font-light">
@@ -133,6 +140,7 @@ export const Services: React.FC = () => {
           ))}
         </div>
       </div>
-    </div>
+      </div>
+    </>
   );
 };

@@ -227,9 +227,7 @@ export const ProjectDetail: React.FC = () => {
                 </span>
                 <h2 className="font-serif text-3xl sm:text-4xl text-[#F5F2EC]">The Spatial Gallery</h2>
               </div>
-              <p className="max-w-xs text-xs leading-relaxed text-[#8E8A82]">
-                Tap any image to enter the space and explore the details at full scale.
-              </p>
+              
             </div>
 
             <div className="grid grid-cols-1 gap-5 md:grid-cols-2">

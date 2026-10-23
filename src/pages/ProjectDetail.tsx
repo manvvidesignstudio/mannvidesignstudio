@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useParams, Link, useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { ArrowLeft, ArrowUpRight, Compass, Maximize2, Calendar, MapPin, Tag } from 'lucide-react';
+import { ArrowLeft, ArrowUpRight, ChevronLeft, ChevronRight, Compass, Maximize2, Calendar, MapPin, Tag } from 'lucide-react';
 import { getProjectBySlug, getProjects } from '../lib/cmsStore';
 import { Project } from '../types/database';
 import { ProjectCard } from '../components/portfolio/ProjectCard';
@@ -72,6 +72,18 @@ export const ProjectDetail: React.FC = () => {
   const relatedProjects = allProjects
     .filter((p) => p.slug !== project.slug && p.published)
     .slice(0, 2);
+  const categoryProjects = allProjects.filter(
+    (p) => p.category === project.category && p.published,
+  );
+  const currentProjectIndex = categoryProjects.findIndex((p) => p.slug === project.slug);
+  const showProjectControls = categoryProjects.length > 1;
+  const navigateToProject = (direction: 'previous' | 'next') => {
+    const nextIndex =
+      direction === 'next'
+        ? (currentProjectIndex + 1) % categoryProjects.length
+        : (currentProjectIndex - 1 + categoryProjects.length) % categoryProjects.length;
+    navigate(`/portfolio/${categoryProjects[nextIndex].slug}`);
+  };
 
   return (
     <>
@@ -92,6 +104,30 @@ export const ProjectDetail: React.FC = () => {
           className="w-full h-full object-cover object-center filter brightness-[0.8] contrast-[1.05]"
         />
         <div className="absolute inset-0 bg-gradient-to-t from-[#11110F] via-[#11110F]/30 to-transparent" />
+
+        {showProjectControls && (
+          <>
+            <button
+              type="button"
+              onClick={() => navigateToProject('previous')}
+              aria-label="Previous project in category"
+              className="absolute left-4 sm:left-8 top-1/2 z-20 -translate-y-1/2 rounded-full border border-[#F5F2EC]/30 bg-transparent p-3 text-[#F5F2EC] transition-colors hover:border-[#C8A97E] hover:bg-[#11110F]/30 hover:text-[#C8A97E] focus-visible:outline focus-visible:outline-2 focus-visible:outline-[#C8A97E]"
+            >
+              <ChevronLeft className="h-5 w-5" />
+            </button>
+            <button
+              type="button"
+              onClick={() => navigateToProject('next')}
+              aria-label="Next project in category"
+              className="absolute right-4 sm:right-8 top-1/2 z-20 -translate-y-1/2 rounded-full border border-[#F5F2EC]/30 bg-transparent p-3 text-[#F5F2EC] transition-colors hover:border-[#C8A97E] hover:bg-[#11110F]/30 hover:text-[#C8A97E] focus-visible:outline focus-visible:outline-2 focus-visible:outline-[#C8A97E]"
+            >
+              <ChevronRight className="h-5 w-5" />
+            </button>
+            <div className="absolute bottom-6 right-6 z-20 border border-[#F5F2EC]/20 bg-[#11110F]/30 px-3 py-1.5 text-[10px] uppercase tracking-[0.2em] text-[#F5F2EC]/80 backdrop-blur-sm">
+              {currentProjectIndex + 1} / {categoryProjects.length} {project.category}
+            </div>
+          </>
+        )}
 
         {/* Back Button */}
         <div className="absolute top-28 left-6 sm:left-12 z-20">

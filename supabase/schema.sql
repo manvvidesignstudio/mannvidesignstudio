@@ -225,6 +225,9 @@ create table if not exists testimonials (
   created_at timestamptz not null default now()
 );
 
+-- Keep existing installations compatible with client portrait support.
+alter table testimonials add column if not exists image_url text;
+
 alter table testimonials enable row level security;
 drop policy if exists "Public read published testimonials" on testimonials;
 drop policy if exists "Authenticated full access testimonials" on testimonials;

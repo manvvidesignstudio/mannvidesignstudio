@@ -380,23 +380,53 @@ export const Home: React.FC = () => {
 
       {/* 8. TESTIMONIALS */}
       {testimonials.length > 0 && (
-        <section className="py-24 sm:py-32 bg-[#0E0E0D] border-b border-[#F5F2EC]/10">
-          <div className="max-w-5xl mx-auto px-6 sm:px-8 md:px-12 text-center space-y-8">
-            <Quote className="w-8 h-8 text-[#C8A97E] mx-auto opacity-75" />
-
-            <div className="min-h-[160px] flex items-center justify-center">
-              <p className="font-serif text-2xl sm:text-3xl md:text-4xl text-[#F5F2EC] italic font-normal leading-relaxed">
-                "{testimonials[activeTestimonial].testimonial}"
+        <section className="border-b border-[#F5F2EC]/10 bg-[#0E0E0D] py-24 sm:py-32">
+          <div className="mx-auto max-w-6xl space-y-12 px-6 sm:px-8 md:px-12">
+            <div className="max-w-2xl space-y-4">
+              <span className="text-[11px] font-sans uppercase tracking-[0.28em] text-[#C8A97E]">
+                Client Perspectives
+              </span>
+              <h2 className="font-serif text-3xl font-normal leading-tight text-[#F5F2EC] sm:text-5xl">
+                Spaces that become part of your story.
+              </h2>
+              <p className="max-w-xl text-sm leading-relaxed text-[#8E8A82] sm:text-base">
+                The most meaningful measure of our work is how it changes the everyday lives of the people who inhabit it.
               </p>
             </div>
 
-            <div className="space-y-1">
-              <h4 className="font-sans text-sm uppercase tracking-[0.2em] text-[#F5F2EC] font-medium">
-                {testimonials[activeTestimonial].client_name}
-              </h4>
-              <p className="text-xs font-sans text-[#8E8A82]">
-                {testimonials[activeTestimonial].client_role} · {testimonials[activeTestimonial].project_title}
-              </p>
+            <div className="grid items-center gap-10 border-y border-[#F5F2EC]/10 py-10 md:grid-cols-[auto_1fr] md:gap-14 md:py-14">
+              <div className="mx-auto md:mx-0">
+                {testimonials[activeTestimonial].image_url ? (
+                  <img
+                    src={testimonials[activeTestimonial].image_url}
+                    alt={testimonials[activeTestimonial].client_name}
+                    className="h-28 w-28 rounded-full object-cover grayscale transition-all duration-500 hover:grayscale-0 sm:h-36 sm:w-36"
+                  />
+                ) : (
+                  <div
+                    className="flex h-28 w-28 items-center justify-center rounded-full border border-[#C8A97E]/40 bg-[#191713] font-serif text-3xl text-[#C8A97E] sm:h-36 sm:w-36"
+                    aria-label={testimonials[activeTestimonial].client_name}
+                  >
+                    {testimonials[activeTestimonial].client_name.charAt(0)}
+                  </div>
+                )}
+              </div>
+
+              <div className="space-y-8 text-center md:text-left">
+                <Quote className="mx-auto h-8 w-8 text-[#C8A97E] opacity-75 md:mx-0" />
+                <p className="font-serif text-2xl font-normal italic leading-relaxed text-[#F5F2EC] sm:text-3xl md:text-4xl">
+                  "{testimonials[activeTestimonial].testimonial}"
+                </p>
+
+                <div className="space-y-1">
+                  <h4 className="font-sans text-sm font-medium uppercase tracking-[0.2em] text-[#F5F2EC]">
+                    {testimonials[activeTestimonial].client_name}
+                  </h4>
+                  <p className="font-sans text-xs text-[#8E8A82]">
+                    {testimonials[activeTestimonial].client_role} · {testimonials[activeTestimonial].project_title}
+                  </p>
+                </div>
+              </div>
             </div>
 
             {/* Testimonials Pagination Dots */}

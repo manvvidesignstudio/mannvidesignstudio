@@ -155,8 +155,11 @@ export const TestimonialsManager: React.FC = () => {
                 value={editing.image_url || ''}
                 onChange={(url) => setEditing((p) => ({ ...p, image_url: url }))}
                 bucket="testimonial-images"
-                label="Client Avatar / Residence Photo"
+                label="Client Portrait *"
               />
+              <p className="mt-2 text-[11px] text-neutral-500">
+                Add a portrait of the person giving the testimonial. This image appears beside their quote on the homepage.
+              </p>
             </div>
 
             <div className="flex justify-end space-x-3 pt-4 border-t border-neutral-100">

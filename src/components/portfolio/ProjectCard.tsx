@@ -58,7 +58,7 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, margin: '-60px' }}
         transition={{ duration: 0.6, delay: 0.1 }}
-        className="pt-5 pb-2 space-y-1.5"
+        className="pt-5 pb-2 space-y-1.5 p-2"
       >
         <div className="flex items-center justify-between text-xs font-sans text-[#8E8A82] uppercase tracking-[0.18em]">
           <span>{project.location}</span>

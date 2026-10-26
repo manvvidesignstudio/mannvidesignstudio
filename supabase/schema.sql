@@ -99,6 +99,8 @@ create table if not exists studio_content (
   intro_eyebrow text not null default 'OUR APPROACH',
   intro_heading text not null default 'Spaces that feel considered, not decorated.',
   intro_body text not null default 'At Manvvi Design Studio, we believe interiors should respond to the people who inhabit them. Our work brings together architecture, material, light and everyday rituals to create spaces that feel timeless and deeply personal.',
+  approach_image_one_url text default 'https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?q=80&w=1000&auto=format&fit=crop',
+  approach_image_two_url text default 'https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?q=80&w=1000&auto=format&fit=crop',
   story_heading text not null default 'Rooted in Pune, Crafted for Living',
   story_text text not null default 'Founded in Pune, Manvvi Design Studio approaches every residence and commercial space with quiet discipline. We avoid the temporary allure of transient trends in favor of enduring proportion, natural stone, sculpted timber, and ambient light that moves gracefully through the room.',
   founder_name text not null default 'Manvvi Sharma',
@@ -126,6 +128,8 @@ alter table studio_content add column if not exists second_founder_name text;
 alter table studio_content add column if not exists second_founder_title text;
 alter table studio_content add column if not exists second_founder_quote text;
 alter table studio_content add column if not exists second_founder_image_url text;
+alter table studio_content add column if not exists approach_image_one_url text default 'https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?q=80&w=1000&auto=format&fit=crop';
+alter table studio_content add column if not exists approach_image_two_url text default 'https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?q=80&w=1000&auto=format&fit=crop';
 
 alter table studio_content enable row level security;
 drop policy if exists "Public read studio_content" on studio_content;

@@ -303,6 +303,33 @@ export const ProjectEditor: React.FC = () => {
           />
         </div>
 
+        {/* Before / After Transformation */}
+        <div className="space-y-4 pt-4 border-t border-neutral-100">
+          <div>
+            <h3 className="text-xs font-bold text-neutral-900 uppercase tracking-wider">
+              Before & After Transformation
+            </h3>
+            <p className="text-xs text-neutral-500 mt-1">
+              Upload both images to enable the interactive transformation slider on the project page.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+            <ImageUploader
+              value={form.before_image || ''}
+              onChange={(url) => setForm((prev) => ({ ...prev, before_image: url }))}
+              bucket="project-images"
+              label="Before Image"
+            />
+            <ImageUploader
+              value={form.after_image || ''}
+              onChange={(url) => setForm((prev) => ({ ...prev, after_image: url }))}
+              bucket="project-images"
+              label="After Image"
+            />
+          </div>
+        </div>
+
         {/* Multi-Image Gallery */}
         <div className="space-y-4 pt-4 border-t border-neutral-100">
           <h3 className="text-xs font-bold text-neutral-900 uppercase tracking-wider">

@@ -151,6 +151,34 @@ export const StudioEditor: React.FC = () => {
           />
         </div>
 
+        <div className="pt-6 border-t border-neutral-200 space-y-4">
+          <div>
+            <h3 className="text-sm font-bold text-neutral-900 uppercase tracking-wider">Our Approach Images</h3>
+            <p className="text-xs text-neutral-500 mt-1">
+              These images appear beside the Our Approach section on the homepage.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+            <ImageUploader
+              value={form.approach_image_one_url || ''}
+              onChange={(url) =>
+                setForm((prev) => (prev ? { ...prev, approach_image_one_url: url } : prev))
+              }
+              bucket="hero-images"
+              label="Material Tactility Image"
+            />
+            <ImageUploader
+              value={form.approach_image_two_url || ''}
+              onChange={(url) =>
+                setForm((prev) => (prev ? { ...prev, approach_image_two_url: url } : prev))
+              }
+              bucket="hero-images"
+              label="Daylight & Proportion Image"
+            />
+          </div>
+        </div>
+
         {/* Founder Story */}
         <div className="pt-6 border-t border-neutral-200 space-y-4">
           <h3 className="text-sm font-bold text-neutral-900 uppercase tracking-wider">Founder & Philosophy</h3>

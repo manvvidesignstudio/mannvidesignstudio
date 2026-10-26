@@ -113,7 +113,7 @@ export const Home: React.FC = () => {
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 pt-4">
                 <ParallaxImage
                   wrapperClassName="relative aspect-[4/5] bg-[#181715]"
-                    src="https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?q=80&w=1000&auto=format&fit=crop"
+                    src={studioContent.approach_image_one_url || 'https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?q=80&w=1000&auto=format&fit=crop'}
                     alt="Interior material nuance"
                     className="w-full h-full object-cover filter brightness-90 hover:scale-105 transition-transform duration-700"
                     loading="lazy"
@@ -125,7 +125,7 @@ export const Home: React.FC = () => {
 
                 <ParallaxImage
                   wrapperClassName="relative aspect-[4/5] bg-[#181715] sm:mt-12"
-                    src="https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?q=80&w=1000&auto=format&fit=crop"
+                    src={studioContent.approach_image_two_url || 'https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?q=80&w=1000&auto=format&fit=crop'}
                     alt="Daylight and proportion"
                     className="w-full h-full object-cover filter brightness-90 hover:scale-105 transition-transform duration-700"
                     loading="lazy"

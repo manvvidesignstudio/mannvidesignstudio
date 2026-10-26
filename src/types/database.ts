@@ -57,6 +57,8 @@ export interface StudioContent {
   intro_eyebrow: string;
   intro_heading: string;
   intro_body: string;
+  approach_image_one_url?: string;
+  approach_image_two_url?: string;
   story_heading: string;
   story_text: string;
   founder_name: string;

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { ArrowRight, Sparkles } from 'lucide-react';
+import { ArrowRight } from 'lucide-react';
 import { getStudioContent } from '../lib/cmsStore';
 import { StudioContent } from '../types/database';
 import { Reveal, ParallaxImage } from '../components/animations/Reveal';
@@ -145,60 +145,55 @@ export const Studio: React.FC = () => {
           </div>
         )}
 
-        {/* Core Values & Pillars */}
+        {/* Clients */}
+        {content.clients && content.clients.length > 0 && (
         <div className="space-y-12 mb-28">
-          <div className="space-y-2">
-            <span className="text-[11px] font-sans uppercase tracking-[0.25em] text-[#C8A97E]">Values</span>
-            <h2 className="font-serif text-3xl sm:text-4xl text-[#F5F2EC]">The Tenets We Practice</h2>
+          <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-6 border-b border-[#F5F2EC]/10 pb-8">
+            <div className="space-y-3 max-w-2xl">
+              <span className="text-[11px] font-sans uppercase tracking-[0.25em] text-[#C8A97E]">
+                Our Clients
+              </span>
+              <h2 className="font-serif text-3xl sm:text-4xl md:text-5xl text-[#F5F2EC] leading-tight">
+                Designed around the lives behind every brief.
+              </h2>
+            </div>
+            <p className="text-sm text-[#8E8A82] leading-relaxed max-w-xs lg:text-right">
+              A selection of the people and families who have trusted us to shape their spaces.
+            </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <div className="p-8 border border-[#F5F2EC]/10 bg-[#141311] space-y-4">
-              <span className="font-serif text-2xl text-[#C8A97E]">01</span>
-              <h3 className="font-serif text-2xl text-[#F5F2EC]">Architectural Restraint</h3>
-              <p className="text-xs text-[#8E8A82] leading-relaxed">
-                We believe what you omit is as important as what you place. Surfaces breathe, sightlines remain uncluttered, and volumes celebrate negative space.
-              </p>
-            </div>
-
-            <div className="p-8 border border-[#F5F2EC]/10 bg-[#141311] space-y-4">
-              <span className="font-serif text-2xl text-[#C8A97E]">02</span>
-              <h3 className="font-serif text-2xl text-[#F5F2EC]">Artisanal Precision</h3>
-              <p className="text-xs text-[#8E8A82] leading-relaxed">
-                From mitred stone edges to shadowline reveals in teak joinery, our contractors and master craftsmen execute every junction with millimeter precision.
-              </p>
-            </div>
-
-            <div className="p-8 border border-[#F5F2EC]/10 bg-[#141311] space-y-4">
-              <span className="font-serif text-2xl text-[#C8A97E]">03</span>
-              <h3 className="font-serif text-2xl text-[#F5F2EC]">Sensory Serenity</h3>
-              <p className="text-xs text-[#8E8A82] leading-relaxed">
-                A home must be felt through touch, acoustics, and gentle light transitions. We specify materials that absorb noise and evoke visceral calm.
-              </p>
-            </div>
-          </div>
-
-          {content.recognitions && content.recognitions.length > 0 && (
-            <div className="space-y-8 mb-28">
-              <div className="space-y-2">
-                <span className="text-[11px] uppercase tracking-[0.25em] text-[#C8A97E]">Recognition & Credentials</span>
-                <h2 className="font-serif text-3xl sm:text-4xl text-[#F5F2EC]">Work grounded in practice.</h2>
-              </div>
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                {content.recognitions.map((item, index) => (
-                  <Reveal key={`${item.title}-${index}`} delay={index * 0.08}>
-                    <div className="h-full p-6 border border-[#F5F2EC]/10 bg-[#141311] hover:border-[#C8A97E]/60 transition-colors">
-                      <p className="text-xs uppercase tracking-[0.2em] text-[#C8A97E]">{item.year}</p>
-                      <h3 className="mt-4 font-serif text-2xl text-[#F5F2EC]">{item.title}</h3>
-                      <p className="mt-2 text-sm text-[#F5F2EC]/80">{item.issuer}</p>
-                      {item.description && <p className="mt-4 text-xs leading-relaxed text-[#8E8A82]">{item.description}</p>}
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+            {content.clients.map((client, index) => (
+              <Reveal key={`${client.name}-${index}`} delay={index * 0.08}>
+                <div className="group relative overflow-hidden border border-[#F5F2EC]/10 bg-[#181715]">
+                  <div className="aspect-[4/5] overflow-hidden">
+                    <img
+                      src={client.photo_url}
+                      alt={client.name}
+                      className="w-full h-full object-cover grayscale-[15%] transition duration-700 ease-out group-hover:scale-105 group-hover:grayscale-0"
+                      loading="lazy"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-[#11110F] via-transparent to-transparent opacity-80" />
+                  </div>
+                  <div className="absolute inset-x-0 bottom-0 flex items-end justify-between p-5">
+                    <div>
+                      <p className="mb-1 text-[10px] uppercase tracking-[0.22em] text-[#C8A97E]">
+                        Client {String(index + 1).padStart(2, '0')}
+                      </p>
+                      <p className="text-sm uppercase tracking-[0.14em] text-[#F5F2EC]">
+                        {client.name}
+                      </p>
                     </div>
-                  </Reveal>
-                ))}
-              </div>
-            </div>
-          )}
+                    <span className="text-lg text-[#F5F2EC]/60 transition-transform duration-300 group-hover:translate-x-1 group-hover:-translate-y-1">
+                      ↗
+                    </span>
+                  </div>
+                </div>
+              </Reveal>
+            ))}
+          </div>
         </div>
+        )}
 
         {/* CTA Banner */}
         <div className="p-12 sm:p-16 border border-[#C8A97E]/30 bg-gradient-to-r from-[#171614] to-[#121210] flex flex-col md:flex-row md:items-center justify-between gap-8">

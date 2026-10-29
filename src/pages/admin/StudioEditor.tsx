@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Save, CheckCircle2, Plus, Trash2 } from 'lucide-react';
 import { getStudioContent, updateStudioContent } from '../../lib/cmsStore';
-import { StudioContent, StudioStat, StudioRecognition } from '../../types/database';
+import { StudioContent, StudioStat, StudioClient } from '../../types/database';
 import { ImageUploader } from '../../components/admin/ImageUploader';
 
 export const StudioEditor: React.FC = () => {
@@ -44,28 +44,23 @@ export const StudioEditor: React.FC = () => {
     }));
   };
 
-  const handleRecognitionChange = (index: number, field: keyof StudioRecognition, value: string) => {
+  const handleClientChange = (index: number, field: keyof StudioClient, value: string) => {
     setForm((prev) => {
       if (!prev) return prev;
-      const recognitions = [...(prev.recognitions || [])];
-      recognitions[index] = { ...recognitions[index], [field]: value };
-      return { ...prev, recognitions };
+      const clients = [...(prev.clients || [])];
+      clients[index] = { ...clients[index], [field]: value };
+      return { ...prev, clients };
     });
   };
 
-  const addRecognition = () => setForm((prev) => prev && ({
+  const addClient = () => setForm((prev) => prev && ({
     ...prev,
-    recognitions: [...(prev.recognitions || []), {
-      title: 'Recognition placeholder',
-      issuer: 'Replace with verified award or certification',
-      year: '20XX',
-      description: 'Update this entry before publishing.',
-    }],
+    clients: [...(prev.clients || []), { name: '', photo_url: '' }],
   }));
 
-  const removeRecognition = (index: number) => setForm((prev) => prev && ({
+  const removeClient = (index: number) => setForm((prev) => prev && ({
     ...prev,
-    recognitions: (prev.recognitions || []).filter((_, i) => i !== index),
+    clients: (prev.clients || []).filter((_, i) => i !== index),
   }));
 
   const handleSave = async (e: React.FormEvent) => {
@@ -370,19 +365,25 @@ export const StudioEditor: React.FC = () => {
         <div className="pt-6 border-t border-neutral-200 space-y-4">
           <div className="flex items-center justify-between">
             <div>
-              <h3 className="text-sm font-bold text-neutral-900 uppercase tracking-wider">Awards & Recognition</h3>
-              <p className="text-xs text-neutral-500 mt-1">Replace placeholder entries with verified credentials before publishing.</p>
+              <h3 className="text-sm font-bold text-neutral-900 uppercase tracking-wider">Clients</h3>
+              <p className="text-xs text-neutral-500 mt-1">Add client names and photos displayed on the About page.</p>
             </div>
-            <button type="button" onClick={addRecognition} className="flex items-center space-x-1 text-xs text-[#C8A97E] font-medium">
-              <Plus className="w-3.5 h-3.5" /><span>Add Recognition</span>
+            <button type="button" onClick={addClient} className="flex items-center space-x-1 text-xs text-[#C8A97E] font-medium">
+              <Plus className="w-3.5 h-3.5" /><span>Add Client</span>
             </button>
           </div>
-          {(form.recognitions || []).map((item, i) => (
-            <div key={i} className="grid grid-cols-1 sm:grid-cols-4 gap-2 p-4 border border-neutral-200 rounded-lg bg-neutral-50">
-              {(['title', 'issuer', 'year', 'description'] as const).map((field) => (
-                <input key={field} value={item[field] || ''} onChange={(e) => handleRecognitionChange(i, field, e.target.value)} placeholder={field} className="px-2 py-1.5 bg-white border border-neutral-300 rounded text-sm text-neutral-900" />
-              ))}
-              <button type="button" onClick={() => removeRecognition(i)} className="text-xs text-red-600 text-left">Remove</button>
+          {(form.clients || []).map((client, i) => (
+            <div key={i} className="p-4 border border-neutral-200 rounded-lg bg-neutral-50 space-y-3">
+              <div className="flex items-center justify-between">
+                <input value={client.name} onChange={(e) => handleClientChange(i, 'name', e.target.value)} placeholder="Client name" className="w-full max-w-sm px-2 py-1.5 bg-white border border-neutral-300 rounded text-sm text-neutral-900" />
+                <button type="button" onClick={() => removeClient(i)} className="ml-3 text-xs text-red-600">Remove</button>
+              </div>
+              <ImageUploader
+                value={client.photo_url}
+                onChange={(url) => handleClientChange(i, 'photo_url', url)}
+                bucket="hero-images"
+                label="Client Photo"
+              />
             </div>
           ))}
         </div>

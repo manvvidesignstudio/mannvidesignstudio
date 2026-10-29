@@ -120,10 +120,12 @@ create table if not exists studio_content (
   recognitions jsonb not null default '[
     {"title": "Recognition placeholder", "issuer": "Replace with a verified award or certification", "year": "20XX", "description": "Update this entry in the Studio CMS before publishing."}
   ]'::jsonb,
+  clients jsonb not null default '[]'::jsonb,
   updated_at timestamptz not null default now()
 );
 
 alter table studio_content add column if not exists recognitions jsonb not null default '[]'::jsonb;
+alter table studio_content add column if not exists clients jsonb not null default '[]'::jsonb;
 alter table studio_content add column if not exists second_founder_name text;
 alter table studio_content add column if not exists second_founder_title text;
 alter table studio_content add column if not exists second_founder_quote text;

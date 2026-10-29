@@ -1,10 +1,18 @@
+export type ProjectCategory = 'Residential' | 'Commercial' | 'Hospitality';
+
+export const PROJECT_CATEGORIES: ProjectCategory[] = [
+  'Residential',
+  'Commercial',
+  'Hospitality',
+];
+
 export interface Project {
   id: string;
   title: string;
   slug: string;
   location: string;
   year: string;
-  category: 'Residential' | 'Commercial' | 'Hospitality';
+  category: ProjectCategory;
   short_description: string;
   description: string;
   concept?: string;
@@ -52,6 +60,11 @@ export interface StudioRecognition {
   description?: string;
 }
 
+export interface StudioClient {
+  name: string;
+  photo_url: string;
+}
+
 export interface StudioContent {
   id?: string;
   intro_eyebrow: string;
@@ -71,6 +84,7 @@ export interface StudioContent {
   second_founder_image_url?: string;
   stats: StudioStat[];
   recognitions?: StudioRecognition[];
+  clients?: StudioClient[];
   updated_at?: string;
 }
 

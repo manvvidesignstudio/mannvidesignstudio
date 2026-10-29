@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Menu, X, ArrowUpRight } from 'lucide-react';
+import { Menu, X, ArrowUpRight, ChevronDown } from 'lucide-react';
 import { useSiteSettings } from '../../context/SiteSettingsContext';
+import { PROJECT_CATEGORIES } from '../../types/database';
 
 interface NavLinkItem {
   name: string;
@@ -21,6 +22,7 @@ const navLinks: NavLinkItem[] = [
 export const Navbar: React.FC = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [portfolioMenuOpen, setPortfolioMenuOpen] = useState(false);
   const location = useLocation();
   const settings = useSiteSettings();
 
@@ -40,7 +42,7 @@ export const Navbar: React.FC = () => {
   // Close mobile drawer on route change
   useEffect(() => {
     setMobileMenuOpen(false);
-  }, [location.pathname]);
+  }, [location.pathname, location.search]);
 
   return (
     <>
@@ -66,6 +68,65 @@ export const Navbar: React.FC = () => {
           <nav className="hidden lg:flex items-center justify-end gap-7 xl:gap-10">
             {navLinks.map((link) => {
               const isActive = location.pathname === link.path;
+              const isPortfolio = link.path === '/portfolio';
+
+              if (isPortfolio) {
+                return (
+                  <div
+                    key={link.path}
+                    className="relative group"
+                    onMouseEnter={() => setPortfolioMenuOpen(true)}
+                    onMouseLeave={() => setPortfolioMenuOpen(false)}
+                  >
+                    <Link
+                      to={link.path}
+                      className={`relative flex items-center gap-1 text-xs uppercase tracking-[0.2em] font-sans transition-colors duration-300 ${
+                        isActive ? 'text-[#C8A97E]' : 'text-[#F5F2EC]/80 hover:text-[#F5F2EC]'
+                      }`}
+                      aria-haspopup="true"
+                    >
+                      {link.name}
+                      <ChevronDown className="w-3.5 h-3.5 transition-transform duration-300 group-hover:rotate-180" />
+                      {isActive && (
+                        <motion.span
+                          layoutId="activeNavIndicator"
+                          className="absolute -bottom-1.5 left-0 w-full h-[1px] bg-[#C8A97E]"
+                          transition={{ type: 'spring', stiffness: 350, damping: 30 }}
+                        />
+                      )}
+                    </Link>
+
+                    <div
+                      className={`absolute left-1/2 top-full z-50 w-56 -translate-x-1/2 pt-5 transition-all duration-200 ${
+                        portfolioMenuOpen
+                          ? 'visible opacity-100'
+                          : 'invisible opacity-0'
+                      }`}
+                    >
+                      <div className="border border-[#F5F2EC]/10 bg-[#181715]/95 p-2 shadow-2xl backdrop-blur-md">
+                        <Link
+                          to="/portfolio"
+                          onClick={() => setPortfolioMenuOpen(false)}
+                          className="block px-4 py-3 text-[11px] uppercase tracking-[0.18em] text-[#C8A97E] transition-colors hover:bg-[#F5F2EC]/5 hover:text-[#F5F2EC]"
+                        >
+                          All Projects
+                        </Link>
+                        {PROJECT_CATEGORIES.map((category) => (
+                          <Link
+                            key={category}
+                            to={`/portfolio?category=${category}`}
+                            onClick={() => setPortfolioMenuOpen(false)}
+                            className="block px-4 py-3 text-[11px] uppercase tracking-[0.18em] text-[#8E8A82] transition-colors hover:bg-[#F5F2EC]/5 hover:text-[#F5F2EC]"
+                          >
+                            {category}
+                          </Link>
+                        ))}
+                      </div>
+                    </div>
+                  </div>
+                );
+              }
+
               return (
                 <Link
                   key={link.path}
@@ -120,6 +181,7 @@ export const Navbar: React.FC = () => {
               <span className="text-[11px] uppercase tracking-[0.25em] text-[#C8A97E]">Navigation</span>
               {navLinks.map((link, idx) => {
                 const isActive = location.pathname === link.path;
+                const isPortfolio = link.path === '/portfolio';
                 return (
                   <motion.div
                     key={link.path}
@@ -137,6 +199,27 @@ export const Navbar: React.FC = () => {
                       <span>{link.name}</span>
                       <ArrowUpRight className="w-5 h-5 text-[#8E8A82]" />
                     </Link>
+                    {isPortfolio && (
+                      <div className="mt-4 ml-4 flex flex-col gap-3 border-l border-[#F5F2EC]/10 pl-4">
+                        <Link
+                          to="/portfolio"
+                          onClick={() => setMobileMenuOpen(false)}
+                          className="text-xs uppercase tracking-[0.18em] text-[#C8A97E]"
+                        >
+                          All Projects
+                        </Link>
+                        {PROJECT_CATEGORIES.map((category) => (
+                          <Link
+                            key={category}
+                            to={`/portfolio?category=${category}`}
+                            onClick={() => setMobileMenuOpen(false)}
+                            className="text-xs uppercase tracking-[0.18em] text-[#8E8A82] hover:text-[#F5F2EC]"
+                          >
+                            {category}
+                          </Link>
+                        ))}
+                      </div>
+                    )}
                   </motion.div>
                 );
               })}

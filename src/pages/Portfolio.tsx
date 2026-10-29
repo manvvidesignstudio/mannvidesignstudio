@@ -8,6 +8,12 @@ import { useSearchParams } from 'react-router-dom';
 
 type FilterCategory = 'All' | ProjectCategory;
 
+const categoryOrder: Record<ProjectCategory, number> = {
+  Residential: 0,
+  Commercial: 1,
+  Hospitality: 2,
+};
+
 export const Portfolio: React.FC = () => {
   const [projects, setProjects] = useState<Project[]>([]);
   const [searchParams] = useSearchParams();
@@ -25,11 +31,22 @@ export const Portfolio: React.FC = () => {
     });
   }, []);
 
-  const filteredProjects = projects.filter((p) => {
-    if (!p.published) return false;
-    if (activeCategory === 'All') return true;
-    return p.category === activeCategory;
-  });
+  const filteredProjects = projects
+    .filter((p) => {
+      if (!p.published) return false;
+      if (activeCategory === 'All') return true;
+      return p.category === activeCategory;
+    })
+    .sort((a, b) => {
+      if (activeCategory !== 'All') {
+        return a.display_order - b.display_order;
+      }
+
+      return (
+        categoryOrder[a.category] - categoryOrder[b.category] ||
+        a.display_order - b.display_order
+      );
+    });
 
   return (
     <>
